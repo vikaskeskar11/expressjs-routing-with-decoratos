@@ -1,0 +1,28 @@
+# Nodejs
+node_modules/
+npm-debug.log
+
+# IDE
+/.settings/
+/typings
+
+# Docker 
+*.stack.yml
+
+# Project
+logs/*
+/.tmp
+package-docker.json
+node_modules
+docker-compose.*.yml
+
+# Skaffold
+.skaffold*
+
+#language cache folder
+languages/preprocessed
+
+# Upload directory
+Upload
+.vscode/launch.json
+Download/

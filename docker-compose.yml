@@ -1,0 +1,13 @@
+version: '3.7'
+
+services: 
+  typescript-mission:
+    build: .
+    ports: 
+      - 3000:3080
+      - 9229:9229
+    command: sh -c "(npm run dev:start)"
+    # ln -sf ../node_modules node_modules &&
+    volumes:
+      - .:/usr/src/app
+      - ./nodemon.json:/home/node/app/nodemon.json

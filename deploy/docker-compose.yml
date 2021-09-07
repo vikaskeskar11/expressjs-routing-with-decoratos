@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  typescript-mission:
+    image: typescript-mission:production-latest
+    secrets:
+      - mysql-password
+      - mysql-database
+      - smtp-username
+      - smtp-password
+      - smtp-host
+      - jwt-secret-key
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 1
+
+  mysql:
+    image: mysql:8.0
+    secrets:
+      - mysql-password
+      - mysql-database
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-password
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql-password
+      MYSQL_DATABASE_FILE: /run/secrets/mysql-database
+    volumes: 
+      - mysql-volume:/var/lib/mysql
+
+secrets:
+  mysql-database:
+     external: true
+
+  mysql-password:
+     external: true
+
+  smtp-host:
+     external: true
+
+  smtp-username:
+     external: true
+
+  smtp-password:
+     external: true
+
+  jwt-secret-key:
+     external: true
+
+volumes: 
+  mysql-volume:
+
+networks:
+  default:
+    name: net

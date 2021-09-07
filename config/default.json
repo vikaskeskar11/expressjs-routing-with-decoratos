@@ -1,0 +1,27 @@
+{
+    "server": {
+        "port": 3080
+    },
+    "db": {
+        "host": "mysql",
+        "type": "mysql",
+        "synchronize": "true",
+        "entities": [
+            "src/entity/**/*.ts"
+        ],
+        "username": "root",
+        "password": "/run/secrets/mysql-password",
+        "database": "/run/secrets/mysql-database"
+    },
+    "logger": {
+        "level": "info"
+    },
+    "smtp": {
+        "host": "/run/secrets/smtp-host",
+        "auth": {
+            "user": "/run/secrets/smtp-username",
+            "pass": "/run/secrets/smtp-password"
+        }
+    },
+    "jwtSecretKey": "/run/secrets/jwt-secret-key"
+}

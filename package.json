@@ -1,0 +1,53 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index",
+    "build": "tsc",
+    "dev:start": "nodemon src/index.ts",
+    "docker:pull": "docker-compose -f docker-compose.deploy.combine.yml -f docker-compose.yml pull",
+    "predebug:start": "npm run create:config && npm run debug:stop",
+    "create:config": "docker-compose -f deploy/docker-compose.yml -f deploy/docker-compose.development.yml config > docker-compose.deploy.combine.yml",
+    "debug:build": "npm run create:config && docker-compose -f docker-compose.deploy.combine.yml -f docker-compose.yml build ",
+    "debug:start": "docker-compose -f docker-compose.deploy.combine.yml -f docker-compose.yml up -d --build && docker logs -f typescript_typescript-mission_1",
+    "debug:stop": "docker-compose -f docker-compose.deploy.combine.yml -f docker-compose.yml down"
+  },
+  "author": {
+    "email": "vikas.kesakar@globant.com",
+    "name": "Vikas Kesakar"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.17.1",
+    "express-winston": "4.2.0",
+    "cors": "2.8.5",
+    "winston": "3.3.3",
+    "mysql2": "2.3.0",
+    "config": "3.3.6",
+    "typeorm": "0.2.37",
+    "bcryptjs": "2.4.3",
+    "nodemailer": "6.6.3",
+    "ejs": "3.1.6",
+    "jsonwebtoken": "8.5.1",
+    "reflect-metadata": "0.1.13",
+    "typedi": "0.10.0"
+  },
+  "devDependencies": {
+    "@types/config": "0.0.39",
+    "@types/express": "4.17.13",
+    "@types/mysql": "2.15.19",
+    "@types/node": "16.7.10",
+    "@types/debug": "4.1.7",
+    "@types/cors": "2.8.12",
+    "@types/bcryptjs": "2.4.2",
+    "@types/nodemailer": "6.4.4",
+    "@types/ejs": "3.1.0",
+    "@types/jsonwebtoken": "8.5.5",
+    "source-map-support": "0.5.19",
+    "nodemon": "2.0.12",
+    "ts-node": "10.2.1",
+    "typescript": "4.4.2"
+  }
+}
